@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="賓果閃燈機：純娛樂燈板賓果、自製音效、無真實金錢。Playgrounds SAM。"
+    />
+    <title>賓果閃燈</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <h1>賓果閃燈</h1>
+        <p class="tagline">五五燈板 · 跑燈開號 · 純娛樂無兌現</p>
+      </header>
+
+      <section class="meter" aria-label="娛樂幣">
+        <div class="meter-item">
+          <span class="label">娛樂幣</span>
+          <strong id="credits">100</strong>
+        </div>
+        <div class="meter-item">
+          <span class="label">本局獎金</span>
+          <strong id="last-win">0</strong>
+        </div>
+        <div class="meter-actions">
+          <button type="button" id="btn-credit">+50 幣</button>
+          <button type="button" id="btn-mute" class="secondary" aria-pressed="true">
+            音效開
+          </button>
+        </div>
+      </section>
+
+      <div class="cabinet" aria-label="賓果閃燈機台">
+        <div
+          id="caller"
+          class="caller"
+          role="img"
+          aria-label="開號顯示器"
+        >
+          <div class="caller-leds" aria-hidden="true"></div>
+          <div class="caller-glow" aria-hidden="true"></div>
+          <div class="caller-scan" aria-hidden="true"></div>
+          <div class="caller-copy">
+            <span id="caller-letter" class="caller-letter">B</span>
+            <strong id="caller-number" class="caller-number">--</strong>
+            <span id="caller-sub" class="caller-sub">純娛樂</span>
+          </div>
+        </div>
+
+        <div class="bingo-wrap">
+          <div class="bingo-head" aria-hidden="true">
+            <span>B</span><span>I</span><span>N</span><span>G</span><span>O</span>
+          </div>
+          <div
+            id="board"
+            class="board"
+            role="grid"
+            aria-label="五乘五賓果卡"
+          ></div>
+        </div>
+      </div>
+
+      <p id="status" class="status" role="status">準備開始</p>
+
+      <section class="drawn-section" aria-label="已開號碼">
+        <h2>已開號碼 <span id="drawn-count">0</span>／20</h2>
+        <div id="drawn-list" class="drawn-list"></div>
+      </section>
+
+      <section class="paytable" aria-label="娛樂賠率">
+        <h2>連線娛樂賠率（相對一局 10 幣）</h2>
+        <ul>
+          <li>1 線 ×2 · 2 線 ×5 · 3 線 ×12</li>
+          <li>4 線 ×25 · 5 線 ×40 · 全盤 ×80</li>
+        </ul>
+      </section>
+
+      <div class="controls">
+        <button type="button" id="btn-start">開始一局（10 幣）</button>
+        <button type="button" id="btn-new" class="secondary">新卡</button>
+        <button type="button" id="btn-clear" class="secondary">清除本局</button>
+      </div>
+
+      <p class="disclaimer">
+        本遊戲為懷舊「賓果閃燈／燈板開號」類型致敬小品，版面與賠率為本專案原創，不還原任何特定商業機台。音效以瀏覽器即時合成，未使用商業機台取樣。不涉及真實金錢、兌換或賭博，僅供純娛樂。
+      </p>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
