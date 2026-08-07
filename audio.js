@@ -8,7 +8,7 @@ export class BingoAudio {
     /** @type {AudioContext | null} */
     this.ctx = null;
     this.enabled = true;
-    this.master = 0.22;
+    this.master = 0.24;
   }
 
   async unlock() {
@@ -43,6 +43,7 @@ export class BingoAudio {
     this.ensure();
     const ctx = this.ctx;
     if (!ctx) return;
+    if (ctx.state === "suspended") void ctx.resume();
 
     const t0 = ctx.currentTime + when;
     const osc = ctx.createOscillator();
@@ -82,7 +83,7 @@ export class BingoAudio {
     const u = Math.max(0, Math.min(1, urgency));
     const freq = 340 + u * 520 + Math.sin(u * 10) * 18;
     const dur = 0.035 - u * 0.018;
-    this.tone(freq, dur, "square", 0.07 + u * 0.05);
+    this.tone(freq, dur, "square", 0.1 + u * 0.07);
   }
 
   /** Number lands */

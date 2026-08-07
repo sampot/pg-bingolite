@@ -59,7 +59,7 @@ body {
 main {
   width: min(100%, 36rem);
   margin: 0 auto;
-  padding: 1.1rem 1rem 2rem;
+  padding: 1.1rem 1rem max(2rem, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -99,6 +99,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  min-width: 0;
 }
 
 .meter-item .label {
@@ -114,8 +115,16 @@ main {
 .meter-actions {
   margin-left: auto;
   display: flex;
-  gap: 0.4rem;
   flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: 100%;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.meter-actions button {
+  flex: 1 1 auto;
+  min-width: min(100%, 5.5rem);
 }
 
 .cabinet {
@@ -397,7 +406,7 @@ main {
 .cell {
   aspect-ratio: 1;
   min-width: 0;
-  min-height: 2.6rem;
+  min-height: max(44px, min(100%, 2.75rem));
   padding: 0.15rem;
   border: 1px solid color-mix(in oklab, #64748b 55%, #000);
   border-radius: 0.32rem;
@@ -560,9 +569,31 @@ main {
 }
 
 .controls {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  padding: 0.65rem 0 max(0.65rem, env(safe-area-inset-bottom));
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.controls button {
+  flex: 1 1 auto;
+  min-height: 44px;
+}
+
+#btn-start {
+  flex: 1 1 100%;
+  white-space: normal;
+}
+
+@media (min-width: 28rem) {
+  #btn-start {
+    flex: 1 1 auto;
+  }
 }
 
 button {
@@ -572,9 +603,14 @@ button {
   color: var(--on-accent);
   border-radius: 0.55rem;
   padding: 0.65rem 0.95rem;
-  min-height: 2.75rem;
+  min-height: 44px;
+  min-width: 44px;
   font-weight: 650;
   cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    filter 0.08s ease,
+    transform 0.08s ease;
 }
 
 button.secondary {
@@ -585,6 +621,11 @@ button.secondary {
 
 button:hover:not(:disabled) {
   filter: brightness(1.05);
+}
+
+button:active:not(:disabled) {
+  filter: brightness(0.92);
+  transform: scale(0.98);
 }
 
 button:disabled {
